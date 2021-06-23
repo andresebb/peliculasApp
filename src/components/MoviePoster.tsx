@@ -16,6 +16,7 @@ export const MoviePoster = ({movie}: Props) => {
         width: 300,
         height: 420,
         backgroundColor: 'red',
+        borderRadius: 18,
       }}>
       <View style={styles.imageContainer}>
         <Image source={{uri}} style={styles.image} />
