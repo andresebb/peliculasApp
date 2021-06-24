@@ -12,6 +12,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {MoviePoster} from '../components/MoviePoster';
 import {useMovies} from '../hooks/useMovies';
 import {Dimensions} from 'react-native';
+import {HorizontalSlider} from '../components/HorizontalSlider';
 
 export const HomeScreen = () => {
   const {peliculasEnCine, isLoading} = useMovies();
@@ -43,40 +44,12 @@ export const HomeScreen = () => {
             itemWidth={300}
             layout={'default'}
             layoutCardOffset={18}
+            inactiveSlideOpacity={0.8}
           />
         </View>
 
-        <View style={{height: 260, backgroundColor: 'red'}}>
-          <Text style={{fontSize: 24, fontWeight: 'bold', marginBottom: 8}}>
-            Populares
-          </Text>
-
-          <FlatList
-            data={peliculasEnCine}
-            renderItem={({item}: any) => (
-              <MoviePoster movie={item} width={140} height={200} />
-            )}
-            horizontal={true}
-            keyExtractor={item => item.id.toString()}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-
-        <View style={{height: 250, backgroundColor: 'red'}}>
-          <Text style={{fontSize: 24, fontWeight: 'bold', marginBottom: 8}}>
-            Populares
-          </Text>
-
-          <FlatList
-            data={peliculasEnCine}
-            renderItem={({item}: any) => (
-              <MoviePoster movie={item} width={140} height={200} />
-            )}
-            horizontal={true}
-            keyExtractor={item => item.id.toString()}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
+        <HorizontalSlider title="Populares" movies={peliculasEnCine} />
+        <HorizontalSlider title="Populares" movies={peliculasEnCine} />
       </View>
     </ScrollView>
   );
