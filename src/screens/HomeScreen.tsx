@@ -1,13 +1,6 @@
 import React from 'react';
 import Carousel from 'react-native-snap-carousel';
-import {
-  View,
-  StatusBar,
-  ActivityIndicator,
-  Text,
-  FlatList,
-  ScrollView,
-} from 'react-native';
+import {View, StatusBar, ActivityIndicator, ScrollView} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {MoviePoster} from '../components/MoviePoster';
 import {useMovies} from '../hooks/useMovies';
@@ -38,7 +31,7 @@ export const HomeScreen = () => {
             height: 440,
           }}>
           <Carousel
-            data={nowPlaying!}
+            data={nowPlaying}
             renderItem={({item}: any) => <MoviePoster movie={item} />}
             sliderWidth={windowWidth}
             itemWidth={300}
@@ -49,9 +42,9 @@ export const HomeScreen = () => {
           />
         </View>
 
-        <HorizontalSlider title="Popular" movies={popular!} />
-        <HorizontalSlider title="Top Rated" movies={topRated!} />
-        <HorizontalSlider title="Upcoming" movies={upcoming!} />
+        <HorizontalSlider title="Popular" movies={popular} />
+        <HorizontalSlider title="Top Rated" movies={topRated} />
+        <HorizontalSlider title="Upcoming" movies={upcoming} />
       </View>
     </ScrollView>
   );
