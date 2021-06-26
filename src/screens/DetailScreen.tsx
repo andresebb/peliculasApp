@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {RootStackParams} from '../navigation/Navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const screemHeight = Dimensions.get('screen').height;
 
@@ -28,6 +29,10 @@ export const DetailScreen = ({route}: Props) => {
       <View style={styles.marginContainer}>
         <Text style={styles.subtitle}>{movie.title}</Text>
         <Text style={styles.title}>{movie.original_title}</Text>
+      </View>
+
+      <View style={styles.marginContainer}>
+        <Icon name="star-outline" size={20} color="#2bc48a" />
       </View>
     </ScrollView>
   );
