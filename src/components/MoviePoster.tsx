@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
     flex: 1,
     shadowColor: '#000',
     shadowOffset: {
-      width: 5,
-      height: 4,
+      width: 0,
+      height: 10,
     },
-    shadowOpacity: 29,
-    shadowRadius: 5.46,
+    shadowOpacity: 0.29,
+    shadowRadius: 7,
 
-    elevation: 24,
+    elevation: 9,
   },
 });
