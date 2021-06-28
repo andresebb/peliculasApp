@@ -6,6 +6,8 @@ import {MoviePoster} from '../components/MoviePoster';
 import {useMovies} from '../hooks/useMovies';
 import {Dimensions} from 'react-native';
 import {HorizontalSlider} from '../components/HorizontalSlider';
+import GradientBackground from '../components/GradientBackground';
+import ImageColors from 'react-native-image-colors';
 
 export const HomeScreen = () => {
   const {nowPlaying, popular, topRated, upcoming, isLoading} = useMovies();
@@ -14,6 +16,13 @@ export const HomeScreen = () => {
 
   const {top} = useSafeAreaInsets();
 
+  const getPosterColors = async (index: number) => {
+    const movie = nowPlaying[index];
+    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    const colors = await ImageColors.getColors(uri);
+    console.log(colors);
+  };
+
   if (isLoading) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
@@ -21,31 +30,34 @@ export const HomeScreen = () => {
       </View>
     );
   }
+
   return (
-    <ScrollView>
-      <View style={{marginTop: top + 10, backgroundColor: 'white'}}>
-        <StatusBar backgroundColor="black" />
+    <GradientBackground>
+      <ScrollView>
+        <View style={{marginTop: top + 10}}>
+          <StatusBar backgroundColor="black" />
 
-        <View
-          style={{
-            height: 440,
-          }}>
-          <Carousel
-            data={nowPlaying}
-            renderItem={({item}: any) => <MoviePoster movie={item} />}
-            sliderWidth={windowWidth}
-            itemWidth={300}
-            layout={'stack'}
-            firstItem={4}
-            layoutCardOffset={18}
-            inactiveSlideOpacity={0.8}
-          />
+          <View
+            style={{
+              height: 440,
+            }}>
+            <Carousel
+              data={nowPlaying}
+              renderItem={({item}: any) => <MoviePoster movie={item} />}
+              sliderWidth={windowWidth}
+              itemWidth={300}
+              layout={'default'}
+              layoutCardOffset={18}
+              inactiveSlideOpacity={0.8}
+              onSnapToItem={index => getPosterColors(index)}
+            />
+          </View>
+
+          <HorizontalSlider title="Popular" movies={popular} />
+          <HorizontalSlider title="Top Rated" movies={topRated} />
+          <HorizontalSlider title="Upcoming" movies={upcoming} />
         </View>
-
-        <HorizontalSlider title="Popular" movies={popular} />
-        <HorizontalSlider title="Top Rated" movies={topRated} />
-        <HorizontalSlider title="Upcoming" movies={upcoming} />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </GradientBackground>
   );
 };
