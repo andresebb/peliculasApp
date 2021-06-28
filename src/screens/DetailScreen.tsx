@@ -11,6 +11,8 @@ import {
 import {RootStackParams} from '../navigation/Navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useMovieDetail} from '../hooks/useMovieDetail';
+import {ActivityIndicator} from 'react-native';
+import {MovieDetails} from '../components/MovieDetail';
 
 const screemHeight = Dimensions.get('screen').height;
 
@@ -34,9 +36,11 @@ export const DetailScreen = ({route}: Props) => {
         <Text style={styles.title}>{movie.original_title}</Text>
       </View>
 
-      <View style={styles.marginContainer}>
-        <Icon name="star-outline" size={20} color="#2bc48a" />
-      </View>
+      {isLoading ? (
+        <ActivityIndicator size={30} color="red" style={{marginTop: 20}} />
+      ) : (
+        <MovieDetails movieFull={movieFull!} cast={cast!} />
+      )}
     </ScrollView>
   );
 };

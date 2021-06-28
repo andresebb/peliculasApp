@@ -23,8 +23,8 @@ export const HomeScreen = () => {
   }
   return (
     <ScrollView>
-      <View style={{marginTop: top + 10}}>
-        <StatusBar backgroundColor="red" />
+      <View style={{marginTop: top + 10, backgroundColor: 'white'}}>
+        <StatusBar backgroundColor="black" />
 
         <View
           style={{
