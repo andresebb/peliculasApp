@@ -10,6 +10,7 @@ import GradientBackground from '../components/GradientBackground';
 import ImageColors from 'react-native-image-colors';
 import {getImageColors} from '../helpers/getImageColors';
 import {GradientContext} from '../context/GradientContext';
+import {useEffect} from 'react';
 
 export const HomeScreen = () => {
   const {nowPlaying, popular, topRated, upcoming, isLoading} = useMovies();
@@ -28,6 +29,12 @@ export const HomeScreen = () => {
       await getImageColors(uri);
     setMainColors({primary, secondary});
   };
+
+  useEffect(() => {
+    if (nowPlaying.length > 0) {
+      getPosterColors(0);
+    }
+  }, [nowPlaying]);
 
   if (isLoading) {
     return (
